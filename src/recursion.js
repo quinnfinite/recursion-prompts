@@ -52,11 +52,24 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
-  if(n % 2 === 0){
-    return true;
-  }else{
-    return false;
-  }
+    var string = n.toString()
+    if(string[0] === '-'){
+      n = parseInt(string.slice(1, string.length));
+    }
+
+    let even;
+    if(n === 0){
+      even = true;
+      return even;
+    }
+    n = n - 2;
+    if (n < 0){
+      even = false;
+    } else {
+      even = isEven(n)
+    }
+    return even
+
 };
 
 // 5. Sum all integers below a given integer.
@@ -76,37 +89,28 @@ var sumBelow = function(n) {
 // range(2,9); // [3,4,5,6,7,8]
 
 var range = function(x, y) {
-/*
-  let sum = 0;
-  array.forEach(function(item){
-    if(Array.isArray(item)){
-      sum += arraySum(item);
-    } else {
-      sum += item
-    }
-  })
-  return sum
-*/
+
 var array = [];
-//if x === y - 1
+
   if(x === y - 1){
-    //push x to array
     return array;
   }
-  else
-  if(x === y){
+  else if(x === y){
     return [];
   }
-  //otherwise
   else if (x < y){
     x = x + 1;
     array.push(x, range(x,y));
   }
   else if (x > y){
     x = x - 1;
-    array.push(x, range(x,y));
+    if(x === y){
+      return [];
+    } else {
+      array.push(x, range(x,y));
+    }
+
   }
-  console.log('Array: ',array.length);
   array = array.flat(Infinity);
   return array;
 };
