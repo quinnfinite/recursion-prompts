@@ -87,40 +87,28 @@ var range = function(x, y) {
   })
   return sum
 */
-  var array = [];
-  //if x === y - 1
-  if(x === y -1){
+var array = [];
+//if x === y - 1
+  if(x === y - 1){
     //push x to array
-    array.push(x);
     return array;
   }
+  else
+  if(x === y){
+    return [];
+  }
   //otherwise
-  else{
-    //add x + 1
-    array.push(x + 1);
-    //call function again to push to array
-    return range(x+1,y)
+  else if (x < y){
+    x = x + 1;
+    array.push(x, range(x,y));
   }
-//problem - it is creating and pushing to a new array each time.
-//ways to solve
-  //Closure?
-
-//return array;
-  /* INFINITE LOOP
-
-  function recurse(x,y){
-    if(x === y - 1){
-      array.push(y - 1);
-      return 'Done'
-    }else{
-      array.push(x+1);
-      console.log(x)
-      recurse(x+1,y);
-    }
+  else if (x > y){
+    x = x - 1;
+    array.push(x, range(x,y));
   }
-  recurse();
+  console.log('Array: ',array.length);
+  array = array.flat(Infinity);
   return array;
-  */
 };
 
 // 7. Compute the exponent of a number.
