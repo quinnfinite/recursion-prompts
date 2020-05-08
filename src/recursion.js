@@ -136,6 +136,26 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  //console.log('n: ', n)
+  var power = true;
+  if(n === 1){
+    power = true;
+    //console.log('Reached one')
+    return power;
+  }
+  x = n/2
+  //console.log('x after div: ', x)
+  if(x === 1){
+    power = true;
+    return power;
+  } else if (x > 1){
+    power = powerOfTwo(x);
+  }else {
+    power = false;
+    //return power;
+  }
+  return power;
+
 };
 
 // 9. Write a function that reverses a string.
